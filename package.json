@@ -1,0 +1,26 @@
+{
+  "name": "@jambonz/stats-collector",
+  "version": "0.0.3",
+  "description": "report metrics from jambonz servers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jambonz/stats-collector.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "author": "Dave Horton",
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^4.1.1",
+    "hot-shots": "^6.8.7"
+  },
+  "bugs": {
+    "url": "https://github.com/jambonz/collector/issues"
+  },
+  "homepage": "https://github.com/jambonz/stats-collector#readme"
+}
