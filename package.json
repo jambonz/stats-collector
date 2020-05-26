@@ -1,6 +1,6 @@
 {
   "name": "@jambonz/stats-collector",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "report metrics from jambonz servers",
   "main": "index.js",
   "scripts": {
@@ -10,9 +10,6 @@
     "type": "git",
     "url": "git+https://github.com/jambonz/stats-collector.git"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "author": "Dave Horton",
   "license": "MIT",
   "dependencies": {
@@ -20,7 +17,7 @@
     "hot-shots": "^6.8.7"
   },
   "bugs": {
-    "url": "https://github.com/jambonz/collector/issues"
+    "url": "https://github.com/jambonz/stats-collector/issues"
   },
   "homepage": "https://github.com/jambonz/stats-collector#readme"
 }
