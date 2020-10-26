@@ -3,7 +3,7 @@ const assert = require('assert');
 const Emitter = require('events');
 const debug = require('debug')('jambonz:stats-collector');
 function onError(logger, err) {
-  logger.info(err, 'Error sending metrics to datadog');
+  logger.info(err, 'Error sending metrics');
 }
 
 class StatsCollector extends Emitter {
@@ -11,10 +11,17 @@ class StatsCollector extends Emitter {
     super();
     this.logger = logger;
 
-    if (process.env.ENABLE_DATADOG_METRICS && 1 === parseInt(process.env.ENABLE_DATADOG_METRICS)) {
-      const prefix = process.env.DATADOG_PREFIX || '';
-      this.statsd = new StatsD({prefix, errorHandler: onError.bind(null, logger)});
-      this.logger.info('sending stats to Datadog');
+    if (process.env.ENABLE_METRICS && 1 === parseInt(process.env.ENABLE_METRICS)) {
+      const opts = {
+        prefix: process.env.STATS_PREFIX || '',
+        errorHandler: onError.bind(null, logger),
+        host: process.env.STATS_HOST || '127.0.0.1',
+        port: process.env.STATS_PORT,
+        cacheDns: process.env.STATS_CACHE_DNS === 1,
+        telegraf: process.env.STATS_TELEGRAF === 1,
+      }
+      this.statsd = new StatsD(opts);
+      this.logger.info(`sending stats to ${opts.host}`);
     }
 
     this.on('resourceCount', this._onResourceCount.bind(this));
@@ -24,9 +31,9 @@ class StatsCollector extends Emitter {
     debug({evt}, 'got resourceCount event');
     if (!this.statsd) return;
     const name = `${evt.hostType}.${evt.resource}.count`;
-    debug(`sending ${name} with value ${evt.count} to datadog`);
+    debug(`sending ${name} with value ${evt.count}`);
     this.statsd.gauge(name, evt.count, {hostname: evt.host}, (err, bytes) => {
-      if (err) return this.logger.error(err, 'Error sending to datadog');
+      if (err) return this.logger.error(err, 'Error sending stats');
     });
   }
 

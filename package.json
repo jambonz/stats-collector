@@ -1,6 +1,6 @@
 {
   "name": "@jambonz/stats-collector",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "report metrics from jambonz servers",
   "main": "index.js",
   "scripts": {
@@ -13,8 +13,8 @@
   "author": "Dave Horton",
   "license": "MIT",
   "dependencies": {
-    "debug": "^4.1.1",
-    "hot-shots": "^6.8.7"
+    "debug": "^4.2.0",
+    "hot-shots": "^8.2.0"
   },
   "bugs": {
     "url": "https://github.com/jambonz/stats-collector/issues"
