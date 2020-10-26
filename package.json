@@ -1,6 +1,6 @@
 {
   "name": "@jambonz/stats-collector",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "report metrics from jambonz servers",
   "main": "index.js",
   "scripts": {

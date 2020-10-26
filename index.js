@@ -17,6 +17,7 @@ class StatsCollector extends Emitter {
         errorHandler: onError.bind(null, logger),
         host: process.env.STATS_HOST || '127.0.0.1',
         port: process.env.STATS_PORT,
+        protocol: process.env.STATS_PROTOCOL || 'udp',
         cacheDns: process.env.STATS_CACHE_DNS === 1,
         telegraf: process.env.STATS_TELEGRAF === 1,
       }
