@@ -5,7 +5,7 @@ Utility class for sending metrics.  Currently supports Telegraf or Datadog as me
 ## usage
 The following environment variables are used:
 
-- `ENABLE_METRICS` set to a value of 1 to enable sending metrics to Telegraf; this package will do nothing if this env var is not set
+- `ENABLE_METRICS` set to a value of 1 to enable sending metrics; this package will do nothing if this env var is not set
 - `STATS_HOST` ip address or dns name that Telegraf is listening on
 - `STATS_PORT` port that Telegraf is listening on
 - `STATS_PROTOCOL` - optional, protocol to use when sending stats; defaults to udp
