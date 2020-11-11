@@ -1,4 +1,4 @@
-# jambonz-stats-collector
+# @jambonz/stats-collector
 
 Utility class for sending metrics.  Currently supports Telegraf or Datadog as metrics collector.
 
