@@ -20,12 +20,21 @@ class StatsCollector extends Emitter {
         protocol: process.env.STATS_PROTOCOL || 'udp',
         cacheDns: process.env.STATS_CACHE_DNS === 1,
         telegraf: process.env.STATS_TELEGRAF === 1,
-      }
-      this.statsd = new StatsD(opts);
+      };
+
+      this.statsd = new StatsD({...opts, errorHandler: this._errorHandler.bind(this, opts)});
       this.logger.info(`sending stats to ${opts.host}`);
     }
 
     this.on('resourceCount', this._onResourceCount.bind(this));
+  }
+
+  _errorHandler(opts, err) {
+    if (err.message === 'This socket has been ended by the other party') {
+      this.logger.info('StatsCollector:_errorHandler socket closed, reconnecting..');
+      this.statsd = new StatsD({...opts, errorHandler: this._errorHandler.bind(this, opts)});
+    }
+    else this.logger.error({err}, 'StatsCollector:_errorHandler');
   }
 
   _onResourceCount(evt) {
