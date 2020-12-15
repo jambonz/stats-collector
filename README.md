@@ -1,4 +1,4 @@
-# @jambonz/stats-collector
+# jambonz/stats-collector ![CI](https://github.com/jambonz/stats-collector/workflows/CI/badge.svg)
 
 Utility class for sending metrics.  Currently supports Telegraf or Datadog as metrics collector.
 
