@@ -1,6 +1,6 @@
 {
   "name": "@jambonz/stats-collector",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "report metrics from jambonz servers",
   "main": "index.js",
   "scripts": {
@@ -14,8 +14,8 @@
   "author": "Dave Horton",
   "license": "MIT",
   "dependencies": {
-    "debug": "^4.3.1",
-    "hot-shots": "^8.2.1"
+    "debug": "^4.3.2",
+    "hot-shots": "^8.5.0"
   },
   "devDependencies": {
     "eslint": "^7.15.0",

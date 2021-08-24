@@ -20,6 +20,9 @@ class StatsCollector extends Emitter {
         protocol: process.env.STATS_PROTOCOL || 'udp',
         cacheDns: process.env.STATS_CACHE_DNS === 1,
         telegraf: process.env.STATS_TELEGRAF === 1,
+        sampleRate: process.env.STATS_SAMPLE_RATE || 1,
+        maxBufferSize: process.env.STATS_MAX_BUFFER_SIZE || 0,
+        bufferFlushInterval: process.env.STATS_BUFFER_FLUSH_INTERVAL
       };
 
       this.statsd = new StatsD({...opts, errorHandler: this._errorHandler.bind(this, opts)});
