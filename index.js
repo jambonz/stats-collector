@@ -22,7 +22,8 @@ class StatsCollector extends Emitter {
         telegraf: process.env.STATS_TELEGRAF === 1,
         sampleRate: process.env.STATS_SAMPLE_RATE || 1,
         maxBufferSize: process.env.STATS_MAX_BUFFER_SIZE || 0,
-        bufferFlushInterval: process.env.STATS_BUFFER_FLUSH_INTERVAL
+        bufferFlushInterval: process.env.STATS_BUFFER_FLUSH_INTERVAL,
+        ...(process.env.STATS_TAGS && {globalTags: process.env.STATS_TAGS.split(',')})
       };
 
       this.statsd = new StatsD({...opts, errorHandler: this._errorHandler.bind(this, opts)});
