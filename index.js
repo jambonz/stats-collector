@@ -34,7 +34,7 @@ class StatsCollector extends Emitter {
   }
 
   _errorHandler(opts, err) {
-    if (err.message === 'This socket has been ended by the other party') {
+    if (err.message.includes('This socket has been ended by the other party')) {
       this.logger.info('StatsCollector:_errorHandler socket closed, reconnecting..');
       this.statsd = new StatsD({...opts, errorHandler: this._errorHandler.bind(this, opts)});
     }
