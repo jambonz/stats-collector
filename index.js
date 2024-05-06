@@ -34,8 +34,11 @@ class StatsCollector extends Emitter {
   }
 
   _errorHandler(opts, err) {
-    if (err.message.includes('This socket has been ended by the other party')) {
+    if (err.message.includes('This socket has been ended by the other party') ||
+    // Next failed write will trigger the reconnection again.
+    err.message.includes('Cannot call write after a stream was destroyed')) {
       this.logger.info('StatsCollector:_errorHandler socket closed, reconnecting..');
+      this.statsd.close();
       this.statsd = new StatsD({...opts, errorHandler: this._errorHandler.bind(this, opts)});
     }
     else this.logger.error({err}, 'StatsCollector:_errorHandler');
